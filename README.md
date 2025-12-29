@@ -1,50 +1,52 @@
 # Network Traffic Analyser
 
-A real-time network traffic monitoring and analysis tool built using **Python, Scapy, and Streamlit**.  
-The system captures live packets, classifies traffic across transport, application, and security layers, and visualises insights through a modern dark-mode dashboard.
+A real-time **network traffic monitoring and analysis tool** built using **Python, Scapy, and Streamlit**.  
+The system captures live packets, classifies traffic across multiple layers, measures DNS latency, and visualises insights through an interactive dark-mode dashboard.
+
+This project focuses on **systems programming, networking fundamentals, and security observability**, making it suitable for academic use, portfolios, and interviews.
 
 ---
 
 ## Features
 
-### Packet Capture
-- Live packet sniffing using Scapy
-- Supports TCP, UDP, and ICMP traffic
-- Saves raw traffic to PCAP for offline analysis
+### Live Packet Capture
+- Real-time packet sniffing using **Scapy**
+- Supports **TCP, UDP, and ICMP** traffic
+- Saves raw traffic in **PCAP format** for offline analysis
 
 ### Traffic Classification
-- Transport Layer: TCP, UDP, ICMP
-- Application Layer: HTTP, HTTPS, DNS, SSH, FTP, QUIC
-- Security Classification: Encrypted vs Unencrypted
+- **Transport Layer:** TCP, UDP, ICMP  
+- **Application Layer:** HTTP, HTTPS, DNS, SSH, FTP, QUIC  
+- **Security Layer:** Encrypted vs Unencrypted traffic  
 - Automatic grouping of low-frequency protocols
 
-### DNS Performance Analysis
+### DNS Latency Measurement
 - Tracks DNS query–response pairs
-- Computes real-time DNS latency (milliseconds)
+- Calculates **DNS latency in milliseconds**
+- Useful for network performance analysis
 
 ### Detection Hooks
 - High traffic detection
 - Packet size anomaly detection
 - DDoS rate monitoring
-- Blacklisted IP detection (extensible)
+- Blacklist-based IP detection (extensible)
 
 ### Interactive Dashboard
 - Live traffic rate visualization
-- Protocol distribution charts
-- Application protocol breakdown
+- Protocol and application-level breakdown
 - Encrypted vs unencrypted traffic analysis
 - Top talkers and raw traffic inspection
-- Dark-mode enterprise UI
+- Modern dark-mode UI built with **Streamlit**
 
 ---
 
 ## Tech Stack
 
 - **Python**
-- **Scapy** – Packet sniffing and protocol parsing
-- **Streamlit** – Web dashboard
+- **Scapy** – Packet capture and protocol parsing
+- **Streamlit** – Interactive web dashboard
 - **Pandas** – Data processing and aggregation
-- **Plotly** – Interactive charts
+- **Plotly** – Interactive visualizations
 - **Npcap** – Packet capture backend (Windows)
 
 ---
@@ -53,13 +55,11 @@ The system captures live packets, classifies traffic across transport, applicati
 
 ### Prerequisites
 - Python 3.9+
-- Administrator privileges (for packet sniffing)
-- Npcap installed (Windows)
+- Administrator/root privileges (for packet sniffing)
+- **Npcap** installed (Windows users)
 
 ### Setup
 ```bash
 git clone https://github.com/maryam-rahat/sniffer.git
-cd network-traffic-analyzer
+cd sniffer
 pip install -r requirements.txt
-
-
