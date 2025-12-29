@@ -1,7 +1,7 @@
-# Network Traffic Analyzer
+# Network Traffic Analyser
 
 A real-time network traffic monitoring and analysis tool built using **Python, Scapy, and Streamlit**.  
-The system captures live packets, classifies traffic across transport, application, and security layers, and visualizes insights through a modern dark-mode dashboard.
+The system captures live packets, classifies traffic across transport, application, and security layers, and visualises insights through a modern dark-mode dashboard.
 
 ---
 
@@ -38,5 +38,28 @@ The system captures live packets, classifies traffic across transport, applicati
 
 ---
 
-## Project Architecture
+## Tech Stack
+
+- **Python**
+- **Scapy** – Packet sniffing and protocol parsing
+- **Streamlit** – Web dashboard
+- **Pandas** – Data processing and aggregation
+- **Plotly** – Interactive charts
+- **Npcap** – Packet capture backend (Windows)
+
+---
+
+## Installation
+
+### Prerequisites
+- Python 3.9+
+- Administrator privileges (for packet sniffing)
+- Npcap installed (Windows)
+
+### Setup
+```bash
+git clone https://github.com/your-username/network-traffic-analyzer.git
+cd network-traffic-analyzer
+pip install -r requirements.txt
+
 
