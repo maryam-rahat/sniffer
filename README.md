@@ -32,11 +32,26 @@ This project focuses on **systems programming, networking fundamentals, and secu
 - Blacklist-based IP detection (extensible)
 
 ### Interactive Dashboard
-- Live traffic rate visualization
+- Live traffic rate visualisation
 - Protocol and application-level breakdown
 - Encrypted vs unencrypted traffic analysis
 - Top talkers and raw traffic inspection
 - Modern dark-mode UI built with **Streamlit**
+
+---
+
+## Architecture
+
+flowchart TD
+    A[Live Network Traffic] --> B[Scapy Packet Sniffer]
+    B --> C[Protocol Parsing<br/>(TCP / UDP / ICMP)]
+    C --> D[Traffic Classification<br/>Transport · Application · Security]
+    D --> E[DNS Latency Measurement]
+    D --> F[Detection Hooks<br/>High Traffic · DDoS · Anomalies]
+    E --> G[CSV Logger<br/>traffic_log.csv]
+    F --> G
+    G --> H[Streamlit Dashboard]
+    H --> I[Live Visualizations<br/>Charts · Metrics · Logs]
 
 ---
 
