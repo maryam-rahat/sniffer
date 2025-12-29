@@ -58,7 +58,7 @@ The system captures live packets, classifies traffic across transport, applicati
 
 ### Setup
 ```bash
-git clone https://github.com/your-username/network-traffic-analyzer.git
+git clone https://github.com/maryam-rahat/sniffer.git
 cd network-traffic-analyzer
 pip install -r requirements.txt
 
