@@ -39,9 +39,22 @@ This project focuses on **systems programming, networking fundamentals, and secu
 - Modern dark-mode UI built with **Streamlit**
 
 ---
+## Traffic Rate Overview
+![Traffic rate](screenshots/traffic.png)
+
+## Transport and Packet Statistics
+![Traffic Stats](screenshots/transport_protocol_packet_size.png)
+
+## Application Protocol Details
+![Application Layer](screenshots/application_protocol.png)
+
+## Alerts & Suspicious Activity
+![Security Classifications](screenshots/security_classification.png)
+
 
 ## Architecture
 
+```mermaid
 flowchart TD
     A[Live Network Traffic] --> B[Scapy Packet Sniffer]
     B --> C[Protocol Parsing<br/>(TCP / UDP / ICMP)]
@@ -52,7 +65,7 @@ flowchart TD
     F --> G
     G --> H[Streamlit Dashboard]
     H --> I[Live Visualizations<br/>Charts · Metrics · Logs]
-
+```
 ---
 
 ## Tech Stack
