@@ -1,0 +1,7 @@
+scapy
+PySide6
+streamlit
+matplotlib
+plotly
+pandas
+streamlit-autorefresh
