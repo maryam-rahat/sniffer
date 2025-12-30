@@ -53,18 +53,17 @@ This project focuses on **systems programming, networking fundamentals, and secu
 
 
 ## Architecture
-
 ```mermaid
 flowchart TD
     A[Live Network Traffic] --> B[Scapy Packet Sniffer]
-    B --> C[Protocol Parsing\nTCP, UDP, ICMP]
-    C --> D[Traffic Classification\nTransport, Application, Security]
+    B --> C[Protocol Parsing TCP UDP ICMP]
+    C --> D[Traffic Classification Transport Application Security]
     D --> E[DNS Latency Measurement]
-    D --> F[Detection Hooks\nHigh Traffic, DDoS, Anomalies]
-    E --> G[CSV Logger\ntraffic_log.csv]
+    D --> F[Detection Hooks High Traffic DDoS Anomalies]
+    E --> G[CSV Logger traffic_log.csv]
     F --> G
     G --> H[Streamlit Dashboard]
-    H --> I[Live Visualizations\nCharts, Metrics, Logs]
+    H --> I[Live Visualisations Charts Metrics Logs]
 ```
 ---
 
