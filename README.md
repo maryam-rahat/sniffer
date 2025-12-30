@@ -40,7 +40,7 @@ This project focuses on **systems programming, networking fundamentals, and secu
 
 ---
 ## Traffic Rate Overview
-![Traffic rate](screenshots/traffic.png)
+![Traffic rate](screenshots/traffic_rate.png)
 
 ## Transport and Packet Statistics
 ![Traffic Stats](screenshots/transport_protocol_packet_size.png)
@@ -57,14 +57,14 @@ This project focuses on **systems programming, networking fundamentals, and secu
 ```mermaid
 flowchart TD
     A[Live Network Traffic] --> B[Scapy Packet Sniffer]
-    B --> C[Protocol Parsing<br/>(TCP / UDP / ICMP)]
-    C --> D[Traffic Classification<br/>Transport · Application · Security]
+    B --> C[Protocol Parsing\nTCP, UDP, ICMP]
+    C --> D[Traffic Classification\nTransport, Application, Security]
     D --> E[DNS Latency Measurement]
-    D --> F[Detection Hooks<br/>High Traffic · DDoS · Anomalies]
-    E --> G[CSV Logger<br/>traffic_log.csv]
+    D --> F[Detection Hooks\nHigh Traffic, DDoS, Anomalies]
+    E --> G[CSV Logger\ntraffic_log.csv]
     F --> G
     G --> H[Streamlit Dashboard]
-    H --> I[Live Visualizations<br/>Charts · Metrics · Logs]
+    H --> I[Live Visualizations\nCharts, Metrics, Logs]
 ```
 ---
 
