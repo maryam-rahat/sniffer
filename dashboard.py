@@ -4,17 +4,14 @@ import plotly.express as px
 from streamlit_autorefresh import st_autorefresh
 import os
 
-# ================= CONFIG =================
 WINDOW_SECONDS = 60
 REFRESH_MS = 1500
 
-# ================= PAGE SETUP =================
 st.set_page_config(
     page_title="Network Traffic Analyzer",
     layout="wide",
 )
 
-# ================= DARK ENTERPRISE THEME =================
 st.markdown("""
 <style>
 
@@ -87,7 +84,6 @@ button[data-baseweb="tab"][aria-selected="true"] {
 </style>
 """, unsafe_allow_html=True)
 
-# ================= SIDEBAR =================
 st.sidebar.header("Controls")
 live_mode = st.sidebar.toggle("Live Mode", value=True)
 
@@ -97,11 +93,9 @@ if live_mode:
 st.sidebar.markdown("---")
 st.sidebar.caption("Network Monitoring Dashboard")
 
-# ================= TITLE =================
 st.markdown("## Network Traffic Analyzer")
 st.caption("Real-time packet capture, protocol classification, and traffic analysis")
 
-# ================= FILE CHECK =================
 if not os.path.exists("traffic_log.csv"):
     st.warning("traffic_log.csv not found. Run sniffer.py first.")
     st.stop()
@@ -127,12 +121,10 @@ if df.empty:
     st.info("Waiting for traffic...")
     st.stop()
 
-# ================= CLEAN =================
 df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce")
 df = df.dropna(subset=["timestamp"])
 df["application_protocol"] = df["application_protocol"].fillna("Other").replace("", "Other")
 
-# ================= METRICS =================
 m1, m2, m3, m4, m5 = st.columns(5)
 
 m1.metric("Total Packets", len(df))
@@ -141,12 +133,10 @@ m3.metric("Unique Destinations", df["dst_ip"].nunique())
 m4.metric("Transport Protocols", ", ".join(sorted(df["transport_protocol"].unique())))
 m5.metric("Encrypted Traffic (%)", f"{(df['security_type']=='Encrypted').mean()*100:.1f}%")
 
-# ================= TABS =================
+
 tab_live, tab_details = st.tabs(["Live Dashboard", "Details"])
 
-# ======================================================
-# LIVE DASHBOARD
-# ======================================================
+
 with tab_live:
 
     st.subheader("Traffic Rate")
@@ -245,9 +235,6 @@ with tab_live:
     )
     st.plotly_chart(security_fig, use_container_width=True, key="security_class")
 
-# ======================================================
-# DETAILS
-# ======================================================
 with tab_details:
 
     with st.expander("Top Source IPs", expanded=True):
