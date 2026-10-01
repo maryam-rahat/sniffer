@@ -13,26 +13,17 @@ from detectors import (
     detect_ddos
 )
 
-# =====================================================
-# ABSOLUTE CSV PATH (dashboard-safe)
-# =====================================================
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_FILE = os.path.join(BASE_DIR, "traffic_log.csv")
 
 print("Sniffer CSV path:", CSV_FILE)
 
-# =====================================================
-# DNS LATENCY TRACKING
-# =====================================================
-dns_query_times = {}   # (src_ip, dst_ip, dns_id) -> timestamp
+dns_query_times = {}   
 
-# =====================================================
-# PROTOCOL CLASSIFICATION
-# =====================================================
 def classify_protocol(transport_proto, src_port, dst_port):
     ports = {src_port, dst_port}
 
-    # ---------- Application ----------
     app_protocol = "Other"
 
     if 53 in ports:
@@ -48,7 +39,6 @@ def classify_protocol(transport_proto, src_port, dst_port):
     elif 21 in ports:
         app_protocol = "FTP"
 
-    # ---------- Security ----------
     if app_protocol in {"HTTPS", "QUIC", "SSH"}:
         security = "Encrypted"
     elif app_protocol in {"HTTP", "FTP", "DNS"}:
@@ -59,10 +49,8 @@ def classify_protocol(transport_proto, src_port, dst_port):
     return app_protocol, security
 
 
-# =====================================================
-# CSV SETUP (FORCED CLEAN HEADER)
-# =====================================================
-traffic_log = open(CSV_FILE, "w", newline="")  # overwrite every run
+
+traffic_log = open(CSV_FILE, "w", newline="")  
 traffic_writer = csv.writer(traffic_log)
 
 traffic_writer.writerow([
@@ -79,9 +67,6 @@ traffic_writer.writerow([
 ])
 
 
-# =====================================================
-# PACKET PROCESSOR
-# =====================================================
 def process_packet(packet):
     if IP not in packet:
         return
@@ -99,13 +84,11 @@ def process_packet(packet):
 
     stats.captured_packets.append(packet)
 
-    # ---------- Detection hooks ----------
     detect_high_traffic(packet)
     detect_packet_size(packet)
     detect_blacklist(packet)
     detect_ddos(packet)
 
-    # ---------- Transport ----------
     if ICMP in packet:
         transport_proto = "ICMP"
         stats.icmp_count += 1
@@ -122,7 +105,6 @@ def process_packet(packet):
         src_port = packet[UDP].sport
         dst_port = packet[UDP].dport
 
-    # ---------- DNS Latency ----------
     if packet.haslayer(DNS):
         dns = packet[DNS]
 
@@ -136,18 +118,17 @@ def process_packet(packet):
                 dns_latency = round(latency, 2)
                 del dns_query_times[key]
 
-    # ---------- Classification ----------
+
     application_protocol, security_type = classify_protocol(
         transport_proto, src_port, dst_port
     )
 
-    # ---------- Console output ----------
     print(
         f"{transport_proto} | {application_protocol} | "
         f"{src_ip}:{src_port} -> {dst_ip}:{dst_port}"
     )
 
-    # ---------- CSV write ----------
+ 
     traffic_writer.writerow([
         timestamp,
         transport_proto,
@@ -164,9 +145,6 @@ def process_packet(packet):
     traffic_log.flush()
 
 
-# =====================================================
-# MAIN
-# =====================================================
 def main():
     print("Starting Capture...")
     sniff(prn=process_packet, store=False)
