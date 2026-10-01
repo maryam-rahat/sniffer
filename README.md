@@ -3,7 +3,7 @@
 A real-time **network traffic monitoring and analysis tool** built using **Python, Scapy, and Streamlit**.  
 The system captures live packets, classifies traffic across multiple layers, measures DNS latency, and visualises insights through an interactive dark-mode dashboard.
 
-This project focuses on **systems programming, networking fundamentals, and security observability**, making it suitable for academic use, portfolios, and interviews.
+This project focuses on **systems programming, networking fundamentals, and security observability**.
 
 ---
 
